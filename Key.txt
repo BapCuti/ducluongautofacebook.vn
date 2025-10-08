@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Key Tool hôm nay</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #7209b7, #b5179e, #f72585);
+    font-family: 'VT323', monospace;
+    color: #ff9efc;
+    text-align: center;
+  }
+  .box {
+    background: rgba(30, 0, 60, 0.8);
+    padding: 30px 40px;
+    border-radius: 15px;
+    box-shadow: 0 0 25px #ff00ff;
+    animation: glow 3s infinite alternate;
+  }
+  @keyframes glow {
+    from { box-shadow: 0 0 15px #ff00ff; }
+    to { box-shadow: 0 0 35px #ff00ff; }
+  }
+  h2 {
+    color: #ffb3ff;
+    margin-bottom: 10px;
+    font-size: 24px;
+  }
+  .key {
+    font-size: 22px;
+    background: rgba(255,255,255,0.1);
+    padding: 12px 18px;
+    border-radius: 10px;
+    margin: 12px 0;
+    display: inline-block;
+    letter-spacing: 1px;
+  }
+  button {
+    background: #ff4dc4;
+    border: none;
+    color: white;
+    font-size: 18px;
+    padding: 8px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 0 10px #ff4dc4;
+    transition: 0.2s;
+  }
+  button:hover {
+    background: #ff00a8;
+    box-shadow: 0 0 20px #ff4dc4;
+  }
+  .time {
+    margin-top: 16px;
+    font-size: 18px;
+    color: #ffc4f9;
+  }
+  a {
+    color: #ffcaff;
+    font-size: 16px;
+    display: inline-block;
+    margin-top: 10px;
+    text-decoration: none;
+  }
+  a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+  <div class="box">
+    <h2>🔑 Key Tool hôm nay:</h2>
+    <div id="key" class="key">DucLuong-C78C4C7100055050</div>
+    <div>
+      <button onclick="copyKey()">📋 Sao chép key</button>
+    </div>
+    <div class="time">
+      ⏳ Thời gian còn lại đến 00:00: <span id="countdown">--:--:--</span><br>
+      Hết hạn lúc 0:00 hôm sau
+    </div>
+    <a href="#">← Quay lại trang lấy key</a>
+  </div>
+
+<script>
+function copyKey() {
+  const keyText = document.getElementById("key").innerText;
+  navigator.clipboard.writeText(keyText);
+  alert("✅ Đã sao chép key: " + keyText);
+}
+
+// Đếm ngược đến 00:00 hôm sau
+function updateCountdown() {
+  const now = new Date();
+  const tomorrow = new Date();
+  tomorrow.setHours(24, 0, 0, 0);
+  const diff = tomorrow - now;
+
+  const hours = Math.floor(diff / (1000 * 60 * 60));
+  const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+  document.getElementById("countdown").textContent =
+    `${hours.toString().padStart(2, "0")}:${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
+}
+setInterval(updateCountdown, 1000);
+updateCountdown();
+</script>
+</body>
+</html>
